@@ -6,7 +6,7 @@ public class ApiUtil {
 
     }
 
-    public static final String Base_url = "http://192.168.100.33:1997/";
+    public static final String Base_url = "http://192.168.100.11:1997/";
 
     public static ApiService getPaketService(){
         return PaketClient.getClient(Base_url).create(ApiService.class);

@@ -16,7 +16,7 @@ public interface INodeJS {
     @POST("auth/signin")
     @FormUrlEncoded
     Observable<String> loginMember(@Field("username") String username,
-                                      @Field("password") String password);
+                                   @Field("password") String password);
 
     @POST("auth/addagentdata")
     @FormUrlEncoded

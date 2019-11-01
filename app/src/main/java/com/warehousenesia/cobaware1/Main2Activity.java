@@ -40,7 +40,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         username = findViewById(R.id.cetak_username);
-        email = findViewById(R.id.cetak_email);
+//        email = findViewById(R.id.cetak_email);
 
 //        String c_username = getIntent().getStringExtra(EXTRA_USERNAME);
 //        String c_email = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -54,7 +54,7 @@ public class Main2Activity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
 
         username.setText("Member : " + sharedPrefManager.getSPNama());
-        email.setText("Email : " + sharedPrefManager.getSPEmail());
+//        email.setText("Email : " + sharedPrefManager.getSPEmail());
 
         btn_logout = findViewById(R.id.btnLogout);
 

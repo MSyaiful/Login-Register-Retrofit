@@ -65,10 +65,17 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View view) {
                 Intent intent = new Intent(RegisMemberActivity.this, MainActivity.class);
                 startActivity(intent);
+                edit_username.getText().toString();
             }
         });
 
         btn_register.setOnClickListener(this);
+
+        if (sharedPrefManager.getSPSudahLogin()) {
+            startActivity(new Intent(RegisMemberActivity.this, Main2Activity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
     }
 
     @Override
@@ -76,17 +83,17 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         if (edit_username.getText().toString().isEmpty()) {
             Toast.makeText(this, "Tolong isi Username", Toast.LENGTH_SHORT).show();
         }
-        if (edit_password.getText().toString().isEmpty()) {
+        else if (edit_password.getText().toString().isEmpty()) {
             Toast.makeText(this, "Tolong isi Password", Toast.LENGTH_SHORT).show();
         }
-        if (edit_email.getText().toString().isEmpty()) {
+        else if (edit_email.getText().toString().isEmpty()) {
             Toast.makeText(this, "Tolong isi Email", Toast.LENGTH_SHORT).show();
         }
-        if (edit_phone.getText().toString().isEmpty()) {
+        else if (edit_phone.getText().toString().isEmpty()) {
             Toast.makeText(this, "Tolong isi Nomor Telphone", Toast.LENGTH_SHORT).show();
         }
         else {
-//            String username = edit_username.getText().toString();
+            String username = edit_username.getText().toString();
 //            String password = edit_password.getText().toString();
 //            String email = edit_email.getText().toString();
 //            String phone = edit_phone.getText().toString();
@@ -95,6 +102,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                     edit_email.getText().toString(),
                     edit_phone.getText().toString());
             Intent intent = new Intent(this, Main2Activity.class);
+            sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, username);
 //            intent.putExtra(Main2Activity.EXTRA_USERNAME, username);
 //            intent.putExtra(Main2Activity.EXTRA_PASSWORD, password);
 //            intent.putExtra(Main2Activity.EXTRA_EMAIL, email);
@@ -113,11 +121,8 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         .subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-                sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, username);
-                sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
-//                Intent intent = new Intent();
-//                intent.putExtra(Main2Activity.EXTRA_USERNAME, username);
-//                intent.putExtra(Main2Activity.EXTRA_EMAIL, email);
+                Toast.makeText(RegisMemberActivity.this, "Registrasi Success", Toast.LENGTH_SHORT).show();
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
             }
         }));
     }

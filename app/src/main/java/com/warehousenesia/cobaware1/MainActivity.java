@@ -134,10 +134,11 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void accept(String s) throws Exception {
                                 if (s.contains("password")) {
-                                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                                    Intent i = new Intent(MainActivity.this, AgentRegister.class);
                                     startActivity(i);
                                     Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+                                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, username);
                                 } else
                                     Toast.makeText(MainActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
                             }
